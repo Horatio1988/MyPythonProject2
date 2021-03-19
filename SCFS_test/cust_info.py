@@ -12,7 +12,10 @@ v_cust_name = ''
 v_cust_license_no = ''
 v_legal_name = ''
 v_operator_name = ''
-
+v_legal_id = ''
+v_operator_id =''
+v_approver_id =''
+v_approver_name =''
 v_scfs_product_code = ''
 v_cnc_product_code = ''
 
