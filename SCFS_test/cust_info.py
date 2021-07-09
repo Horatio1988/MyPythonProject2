@@ -30,3 +30,4 @@ data2 = cursor.fetchmany(3)
 print ("data1:", data1)
 print ("data2:", data2)
 db.close()
+

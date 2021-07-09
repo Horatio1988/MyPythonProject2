@@ -1,13 +1,9 @@
 # coding: utf-8
 import random as r
+import sys
 
-check_dict = {
-    "0": 0, "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9,
-    "A": 10, "B": 11, "C": 12, "D": 13, "E": 14, "F": 15, "G": 16, "H": 17, "J": 18, "K": 19, "L": 20, "M": 21,
-    "N": 22, "P": 23, "Q": 24, "R": 25, "T": 26, "U": 27, "W": 28, "X": 29, "Y": 30
-}
-dict_check = dict(zip(check_dict.values(), check_dict.keys()))
-
+credit_base1="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+credit_base2="0123456789ABCDEFGHJKLMNPQRTUWXY"
 
 class TmCust:
 
@@ -15,10 +11,10 @@ class TmCust:
     #     cust_name = r.choice(cust_str1) + r.choice(cust_str2) + r.choice(cust_str3) + r.choice(cust_str4)
     #     print(cust_name+'有限责任公司')
     def cust_name_init(self):
-        cust_str1 = ['上海', '深圳', '广州', '北京', '武汉', '成都', '青岛', '福州', '浙江']
-        cust_str2 = ['智慧', '英知', '卓凡', '永硕', '御诚', '华德', '科文', '源清', '捷发', '华泰', '天益']
-        cust_str3 = ['科技', '医疗', '教育', '交通', '文化', '信息']
-        cust_str4 = ['管理', '咨询']
+        cust_str1 = ['上海', '深圳', '广州', '北京', '武汉', '成都', '青岛', '福州', '浙江','无锡','杭州','合肥','重庆']
+        cust_str2 = ['智慧', '英知', '卓凡', '永硕', ' ', '华德', '科文', '源清', '捷发', '华泰', '天益','培元','永达']
+        cust_str3 = ['科技', '医疗', '教育', '物业', '文化', '信息','商业','餐饮','保健','园林','批发']
+        cust_str4 = ['管理', '咨询','服务']
         cust_name = r.choice(cust_str1) + r.choice(cust_str2) + r.choice(cust_str3) + r.choice(cust_str4) + '有限责任公司'
         return cust_name
 
@@ -33,8 +29,14 @@ class TmCust:
         weight_code = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30, 28]  # Wi 代表第i位上的加权因子=pow(3,i-1)%31
         code = manage_code + type_code + area_code + org_code
         for i in range(17):
-            sum = sum + check_dict[code[i:i + 1]] * weight_code[i]
-        C18 = dict_check[31 - sum % 31]
+            sum = sum + credit_base2.index(code[i]) * weight_code[i]
+        # sum = sum + check_dict[code[i:i + 1]] * weight_code[i]
+        last_verify = 31 - sum % 31
+        if last_verify == 31:
+            C18 = credit_base2[0]
+        else:
+            C18 = credit_base2[last_verify]
+
         social_code = code + C18
         # print(social_code)
         return social_code
@@ -47,8 +49,13 @@ class TmCust:
         org_code = []  # 组织机构代码列表
         sum = 0
         for i in range(8):
-            org_code.append(dict_check[r.randint(0, 30)])  # 前八位本体代码：0~9 + A~Z 31个
-            sum = sum + check_dict[org_code[i]] * weight_code[i]
+            random_num = r.randint(0, 29)
+            code_apd = credit_base2[random_num]
+            # code_apd=dict_check[random_num]
+            org_code.append(code_apd)
+            # org_code.append(dict_check[random.randint(0, 30)])  # 前八位本体代码：0~9 + A~Z 31个
+            # sum = sum + check_dict[code_apd] * weight_code[i]
+            sum = sum + credit_base1.index(code_apd) * weight_code[i]
         C9 = 11 - sum % 11  # 代表校验码：11-MOD（∑Ci(i=1→8)×Wi,11）-->前8位加权后与11取余，然后用11减
         if C9 == 10:
             last_code = 'X'
@@ -61,8 +68,8 @@ class TmCust:
         # print(code)
         return (code)
 
-
-new_cust_name = TmCust().cust_name_init()
-new_social_credit = TmCust().create_social_credit()
-print(new_cust_name)
-print(new_social_credit)
+if __name__ == '__main__':
+    new_cust_name = TmCust().cust_name_init()
+    new_social_credit = TmCust().create_social_credit()
+    print(new_cust_name)
+    print(new_social_credit)

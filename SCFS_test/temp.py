@@ -1,6 +1,12 @@
 #coding:utf-8
-import json
-js = json.loads('{"haha":"哈哈"}')
-print json.dumps(js)
-print json.dumps(js, ensure_ascii=False)
-print type(js)
+import re
+import os
+
+result_list = []
+pattern = re.compile('.*?rar')
+
+f = open("D:\WorkSpace\MyPythonProject\TestFile.txt")
+t = f.read()
+f.close()
+result_temp = pattern.findall(t)
+print (result_temp)

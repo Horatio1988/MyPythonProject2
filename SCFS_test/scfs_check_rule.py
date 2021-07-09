@@ -10,7 +10,7 @@ import json
 import urllib2
 import urllib
 # from urllib import parse
-import PYMySQL
+import pymysql
 
 # 生成随机变量函数
 def random_value(post):
