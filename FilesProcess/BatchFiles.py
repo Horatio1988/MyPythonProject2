@@ -4,7 +4,7 @@ import os
 
 result_list = []
 pattern = re.compile('.*?rar')
-file_dir = "D:\WorkSpace\MyPythonProject\TestFiles"
+file_dir = r"C:\Users\Horatio\PycharmProjects\MyPythonProject\TestFiles"
 file = os.listdir(file_dir)
 for i in range(len(file)):
     file[i] = file_dir + '\\' + file[i]
