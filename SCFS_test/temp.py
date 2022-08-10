@@ -1,19 +1,16 @@
-#coding:utf-8
-import re
-import os
+import random
 
-result_list = []
-pattern = re.compile('.*?rar')
 
-file = os.listdir("D:\WorkSpace\MyPythonProject\TestFiles")
-for i in range(len(file)):
-    file[i] = 'files' + '/' + file[i]
-for
+def user_mobile_phone():
+    # (移动1111 电信1101 联通1121) + 随机值(0000001 ~ 9999999)
+    mobile_pre_list = ['1111', '1101', '1121']
+    mobile_post_suf = str(random.randint(1, 9999999)).rjust(7, '0')
 
-f = open("D:\WorkSpace\MyPythonProject\TestFiles\TestFile.txt")
-content_1 = f.read()
+    user_mobile = random.choice(mobile_pre_list) + mobile_post_suf
+    return user_mobile
+def user_id():
 
-result_temp = pattern.findall(content_1)
-print (result_temp)
 
-f.close()
+if __name__ == '__main__':
+    u = user_mobile_phone()
+    print(u)

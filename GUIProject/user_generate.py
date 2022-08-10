@@ -2,16 +2,22 @@
 import random
 
 
-class TmUser :
+class TmUser:
     # 身份证号
     # 男: 地区号 + 年(生成数据当日日期计算, 根据指定年龄或者年龄区间) + 生成日期 + 2位随机数 + 7 + 1位随机校验码(根据性别)
     # 女: 地区号 + 年(生成数据当日日期计算, 根据指定年龄或者年龄区间) + 生成日期 + 2位随机数 + 6 + 1位随机校验码(根据性别)
     # def user_name(self):
-    #
-    # def user_mobile_phone(self):
-    #
-    #
-    # def user_id_no(self):
+
+    def user_mobile_phone(self):
+        # (移动1111 电信1101 联通1121) + 随机值(0000001 ~ 9999999)
+        mobile_pre_list = ['1111', '1101', '1121']
+        mobile_post_suf = str(random.randint(1, 9999999)).rjust(7, '0')
+
+        user_mobile = random.choice(mobile_pre_list) + mobile_post_suf
+        return user_mobile
+
+    def user_id_no(self):
+
 
     def user_bank_card(self):
         # 银行卡号：
@@ -29,16 +35,14 @@ class TmUser :
         print(bank_random)
         bank_name = bank_list[bank_random]
         if bank_random < 5:
-            bank_no = bank_no_pre[bank_random]+str(random.randint(100000, 999999))+str(random.randint(10000, 99999))
+            bank_no = bank_no_pre[bank_random] + str(random.randint(100000, 999999)) + str(random.randint(10000, 99999))
         elif bank_random == 5:
-            bank_no = bank_no_pre[bank_random]+str(random.randint(1000, 9999))+str(random.randint(1000, 9999))
+            bank_no = bank_no_pre[bank_random] + str(random.randint(1000, 9999)) + str(random.randint(1000, 9999))
         else:
-            bank_no = bank_no_pre[bank_random]+str(random.randint(10000, 99999))+str(random.randint(1000, 9999))
-        print(bank_no)
-        print(bank_name)
+            bank_no = bank_no_pre[bank_random] + str(random.randint(10000, 99999)) + str(random.randint(1000, 9999))
         return bank_name
         return bank_no
 
-if __name__ == '__main__':
-        new_bank = TmUser().user_bank_card()
 
+if __name__ == '__main__':
+    new_bank = TmUser().user_bank_card()

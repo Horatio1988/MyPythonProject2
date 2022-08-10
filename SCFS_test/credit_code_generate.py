@@ -26,8 +26,8 @@ def create_organization():
         code_apd= credit_base2[random_num]
        #code_apd=dict_check[random_num]
         org_code.append(code_apd)
-        #org_code.append(dict_check[random.randint(0, 30)])  # 前八位本体代码：0~9 + A~Z 31个
-        #sum = sum + check_dict[code_apd] * weight_code[i]
+        # org_code.append(dict_check[random.randint(0, 30)])  # 前八位本体代码：0~9 + A~Z 31个
+        # sum = sum + check_dict[code_apd] * weight_code[i]
         sum = sum + credit_base1.index(code_apd)* weight_code[i]
     C9 = 11 - sum % 11  # 代表校验码：11-MOD（∑Ci(i=1→8)×Wi,11）-->前8位加权后与11取余，然后用11减
     if C9 == 10:
