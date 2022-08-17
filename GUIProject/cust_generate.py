@@ -12,9 +12,9 @@ class TmCust:
     #     print(cust_name+'有限责任公司')
     def cust_name_init(self):
         cust_str1 = ['上海', '深圳', '广州', '北京', '武汉', '成都', '青岛', '福州', '浙江','无锡','杭州','合肥','重庆']
-        cust_str2 = ['智慧', '英知', '卓凡', '永硕', '利达', '华德', '科文', '源清', '捷发', '华泰', '天益','培元','永达','哈哈']
-        cust_str3 = ['科技', '医疗', '教育', '物业', '文化', '信息','商业','餐饮','保健','园林','批发','电子','地产','农业','水果']
-        cust_str4 = ['管理', '咨询','服务','嘉恒','茂名','本旋']
+        cust_str2 = ['智慧', '英知', '卓凡', '永硕', '利达', '华德', '科文', '源清', '捷发', '华泰', '天益', '培元', '永达', '哈哈']
+        cust_str3 = ['科技', '医疗', '教育', '物业', '文化', '信息', '商业', '餐饮', '保健', '园林', '批发', '电子', '地产', '农业', '水果']
+        cust_str4 = ['管理', '咨询', '服务', '嘉恒', '茂名', '本旋', '佳恒']
         cust_name = '测试' + r.choice(cust_str1) + r.choice(cust_str2) + '测试' + r.choice(cust_str3) + r.choice(cust_str4) + '测试企业'
         return cust_name
 
@@ -68,8 +68,8 @@ class TmCust:
         # print(code)
         return (code)
 
-if __name__ == '__main__':
-    new_cust_name = TmCust().cust_name_init()
-    new_social_credit = TmCust().create_social_credit()
-    print(new_cust_name)
-    print(new_social_credit)
+#if __name__ == '__main__':
+   # new_cust_name = TmCust().cust_name_init()
+   # new_social_credit = TmCust().create_social_credit()
+   # print(new_cust_name)
+  #  print(new_social_credit)

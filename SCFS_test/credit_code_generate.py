@@ -54,8 +54,8 @@ def create_social_credit():
     for i in range(17):
         sum = sum + credit_base2.index(code[i])* weight_code[i]
        # sum = sum + check_dict[code[i:i + 1]] * weight_code[i]
-    last_verify= 31 - sum % 31
-    if last_verify== 31:
+    last_verify = 31 - sum % 31
+    if last_verify == 31:
         C18 = credit_base2[0]
     else:
         C18 = credit_base2[last_verify]
