@@ -25,7 +25,8 @@ class TmUser:
                           '青', '安', '昕', '淑', '雅', '颖', '云', '艺', '忻', '梓', '江', '丽', '梦', '雪', '沁', '思', '羽', '羽',
                           '雅', '访', '烟', '萱', '忆', '慧', '娅', '茹', '嘉', '幻', '辰', '妍', '雨', '蕊', '欣', '芸', '亦']
 
-        user_name = '测试用户'+random.choice(first_name_list) + random.choice(second_name_list) + random.choice(last_name_list)
+        user_name = '测试' + random.choice(second_name_list) + random.choice(first_name_list) + random.choice(
+            last_name_list)
         return user_name
 
     def user_mobile_phone(self):
@@ -43,32 +44,30 @@ class TmUser:
         province_id = [11, 12, 13, 14, 15, 21, 22, 23, 31, 32, 33, 34, 35, 36, 37, 41, 42, 43, 44, 45, 46,
                        50, 51, 52, 53, 54, 61, 62, 63, 65, 65, 81, 82, 83]
         id_weigh_code = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
-        check_code = {'0': '1', '1': '0', '2': 'X', '3': '9', '4': '8', '5': '7', '6': '6', '7': '5', '8': '5',
+        check_code = {'0': '1', '1': '0', '2': 'X', '3': '9', '4': '8', '5': '7', '6': '6', '7': '5', '8': '4',
                       '9': '3',
                       '10': '2'}
         id_num = ''
         # 随机选择地址码
         id_num += str(random.choice(province_id))
         # 随机生成4-6位地址码
-        for i in range(4):
-            ran_num = str(random.randint(0, 9))
-            id_num += ran_num
+        # for i in range(4):
+        #     ran_num = str(random.randint(0, 9))
+        #     id_num += ran_num
+        id_num += '0100'
         b = self.get_birthday()
         id_num += b
-        # 生成15、16位顺序号
-        num = ''
-        for i in range(2):
-            num += str(random.randint(0, 9))
-        id_num += num
+        # 生成15位顺序号
+        id_num += str(random.randint(0, 9))
         # 通过性别判断生成第十七位数字 男单 女双
         s = random.choice(["male", "female"])
 
         # print("性别:", s)
         if s == 'male':
             # 生成奇数
-            seventeen_num = '7'
+            seventeen_num = '77'
         else:
-            seventeen_num = '6'
+            seventeen_num = '66'
         id_num += str(seventeen_num)
         id_num_list = list(map(int, list(id_num)))
         id_calc = 0
@@ -117,7 +116,6 @@ class TmUser:
         else:
             bank_no = bank_no_pre[bank_random] + str(random.randint(10000, 99999)) + str(random.randint(1000, 9999))
         return bank_name, bank_no
-
 
 # if __name__ == '__main__':
 #     new_name = TmUser().user_name()
